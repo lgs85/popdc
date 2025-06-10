@@ -10,6 +10,7 @@
 #' @examples
 #' params <- read_yaml('params.yaml')
 #' generate_pop(params)
+
 generate_pop <- function(params)
 {
   pop <- tibble(id = c(1:params$pop_size$value),
@@ -18,10 +19,20 @@ generate_pop <- function(params)
                              prob = as.numeric(params$age_group_probs$value),
                              replace = TRUE))
 
-  pop <- pop |>
-    mutate(segment = map_chr(age, ~ sample_segment_age(age = .x,params))) |>
-    mutate(wl = map2_lgl(age,segment, ~ sample_segment_age_wl(age = .x, segment = .y, params)))
+  pop$segment <- NA
+  pop$segment[pop$age == 'child'] <- sample_segment_age('child', params, sum(pop$age == 'child'))
+  pop$segment[pop$age == 'adult'] <- sample_segment_age('adult', params, sum(pop$age == 'adult'))
+  pop$segment[pop$age == 'elderly'] <- sample_segment_age('elderly', params, sum(pop$age == 'elderly'))
 
+  df_wl_prob <- as_tibble(params$on_waiting_list_prob$value) |>
+    unnest() |>
+    mutate(segment = names(params$on_waiting_list_prob$value[['child']])) |>
+    pivot_longer(child:elderly,
+                 names_to = 'age',
+                 values_to = 'wl_prob')
+
+  pop <- pop |> left_join(df_wl_prob) |>
+    mutate(wl = rbinom(n(), 1, wl_prob))
 
 # Waiting times using lognormal distribution
   meanlog <- log(params$elective_wait_times$value$median)

@@ -8,6 +8,7 @@ editor: visual
 library(yaml)
 library(tidyverse)
 params <- read_yaml('../params/params.yaml')
+devtools::load_all()
 
 ```
 Create a starting population
@@ -17,4 +18,11 @@ Create a starting population
 dd <- generate_pop(params)
 dd
 
+```
+
+```{r}
+
+dd <- sim_day(dd,'monday',params)
+
+count(dd,gp_app)
 ```
