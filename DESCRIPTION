@@ -1,0 +1,12 @@
+Package: popdc
+Title: A population health-led demand and capacity model
+Version: 0.0.1
+Authors@R: 
+    person("Lewis", "Spurgin", , "lewis.spurgin@nhs.net", role = c("aut", "cre"))
+Description: A population health-led demand and capacity model for care systems.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    yaml

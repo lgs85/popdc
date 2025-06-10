@@ -1,0 +1,20 @@
+---
+title: "Model run example"
+format: html
+editor: visual
+---
+
+```{r}
+library(yaml)
+library(tidyverse)
+params <- read_yaml('../params/params.yaml')
+
+```
+Create a starting population
+
+```{r}
+
+dd <- generate_pop(params)
+dd
+
+```

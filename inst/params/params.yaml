@@ -1,0 +1,65 @@
+pop_size:
+  description: 'the size of your population'
+  value: 1000
+  required: true
+
+age_group_probs:
+  description: 'the proportion of the population in each age group'
+  value:
+    child: 0.2
+    adult: 0.6
+    elderly: 0.2
+  required: true
+
+segment_probs_by_age_group:
+  description: 'the proportion of the population in each segment, by age'
+  value:
+    child:
+      Healthy: 0.8
+      AcuteEpisodic: 0.15
+      LongTermConditions: 0.05
+      HighNeed: 0.0
+      EndOfLife: 0.0
+    adult:
+      Healthy: 0.5
+      AcuteEpisodic: 0.3
+      LongTermConditions: 0.15
+      HighNeed: 0.04
+      EndOfLife: 0.01
+    elderly:
+      Healthy: 0.1
+      AcuteEpisodic: 0.15
+      LongTermConditions: 0.4
+      HighNeed: 0.25
+      EndOfLife: 0.1
+  required: true
+
+on_waiting_list_prob:
+  description: 'the proportion of the proportion of the population on an elective waiting list, by age and segment'
+  value:
+    child:
+      Healthy: 0.059
+      AcuteEpisodic: 0.152
+      LongTermConditions: 0.105
+      HighNeed: 0.237
+      EndOfLife: 0.163
+    adult:
+      Healthy: 0.043
+      AcuteEpisodic: 0.151
+      LongTermConditions: 0.133
+      HighNeed: 0.289
+      EndOfLife: 0.239
+    elderly:
+      Healthy: 0.083
+      AcuteEpisodic: 0.224
+      LongTermConditions: 0.178
+      HighNeed: 0.243
+      EndOfLife: 0.178
+  required: true
+
+elective_wait_times:
+  description: 'median and 90th percentile waiting times'
+  value:
+    median: 100
+    q90: 290
+  required: true
