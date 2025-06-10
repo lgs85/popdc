@@ -68,23 +68,23 @@ gp_appointments_per_year:
   description: 'yearly average number of GP appointments by age and segment'
   value:
     child:
-      Healthy: 7.7
-      AcuteEpisodic: 21.0
-      LongTermConditions: 14.3
-      HighNeed: 30.9
-      EndOfLife: 39.4
+      Healthy: 1.9
+      AcuteEpisodic: 5.2
+      LongTermConditions: 3.4
+      HighNeed: 7.5
+      EndOfLife: 9.8
     adult:
-      Healthy: 9.6
-      AcuteEpisodic: 22.7
-      LongTermConditions: 31.2
-      HighNeed: 68.7
-      EndOfLife: 64.9
+      Healthy: 2.4
+      AcuteEpisodic: 5.6
+      LongTermConditions: 7.8
+      HighNeed: 17.2
+      EndOfLife: 16.2
     elderly:
-      Healthy: 22.0
-      AcuteEpisodic: 40.5
-      LongTermConditions: 46.7
-      HighNeed: 69.0
-      EndOfLife: 74.7
+      Healthy: 5.5
+      AcuteEpisodic: 10.1
+      LongTermConditions: 11.5
+      HighNeed: 17
+      EndOfLife: 18.7
 
 gp_appointments_daily_weight:
   description: 'proportion of GP appointments per day'
