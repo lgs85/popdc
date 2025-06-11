@@ -15,6 +15,15 @@ sim_day <- function (pop,day,params)
 {
 
 
+# demographic growth ------------------------------------------------------
+
+newpopsize <- round((rnorm(1,params$demographic_growth$value$mean,params$demographic_growth$value$sd)))
+newpop <- generate_pop(params,pop_size = newpopsize)
+newpop$id <- c((max(pop$id)+1):(max(pop$id)+newpopsize))
+
+pop <- bind_rows(pop,newpop)
+
+
 # GP attendance -----------------------------------------------------------
 
 
@@ -30,7 +39,7 @@ sim_day <- function (pop,day,params)
 
   pop <- pop |>
     left_join(df_gp_app,by = join_by(age, segment)) |>
-    mutate(gp_app = rbinom(params$pop_size$value, 1, appointment_prob)) |>
+    mutate(gp_app = rbinom(n(), 1, appointment_prob)) |>
     select(-appointment_prob)
 
 
@@ -45,7 +54,7 @@ sim_day <- function (pop,day,params)
 
   pop <- pop |>
     left_join(df_ae_att,by = join_by(age, segment)) |>
-    mutate(ae_att = rbinom(params$pop_size$value, 1, attendance_prob)) |>
+    mutate(ae_att = rbinom(n(), 1, attendance_prob)) |>
     select(-attendance_prob)
 
 

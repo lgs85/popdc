@@ -25,7 +25,14 @@ sim_period <- function(pop,ndays,params)
   {
     pop <- sim_day(pop,day = days[i],params) |>
       mutate(day = i)
-    popl[[i]] <- pop
+
+    popsum <- pop |>
+      group_by(age,segment, day) |>
+      summarise(n = n(),
+                gp_app = sum(gp_app),
+                ae_att = sum(ae_att))
+
+    popl[[i]] <- popsum
     cat('.')
   }
 

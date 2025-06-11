@@ -3,6 +3,7 @@
 export(generate_pop)
 export(sample_segment_age)
 export(sim_day)
+export(sim_period)
 importFrom(dplyr,mutate)
 importFrom(purrr,map2_lgl)
 importFrom(purrr,map_dbl)

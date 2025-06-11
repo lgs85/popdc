@@ -1,6 +1,7 @@
 #' Simulate a baseline population
 #'
 #' @param params a parameters object, read in from a yaml file using `read_yaml()`
+#' @param pop_size numeric - leave blank to use the value in the params file
 #'
 #' @returns a dataframe
 #' @importFrom dplyr mutate
@@ -11,11 +12,13 @@
 #' params <- read_yaml('params.yaml')
 #' generate_pop(params)
 
-generate_pop <- function(params)
+generate_pop <- function(params, pop_size = NULL)
 {
-  pop <- tibble(id = c(1:params$pop_size$value),
+
+  if(!is.numeric(pop_size)) {pop_size <- params$pop_size$value}
+  pop <- tibble(id = c(1:pop_size),
                 age = sample(names(params$age_group_probs$value),
-                             params$pop_size$value,
+                             pop_size,
                              prob = as.numeric(params$age_group_probs$value),
                              replace = TRUE))
 
@@ -39,7 +42,7 @@ generate_pop <- function(params)
   sdlog <- (log(params$elective_wait_times$value$q90) - meanlog) / qnorm(0.9)
 
   pop <- pop |>
-    mutate(wl_time_days = rlnorm(params$pop_size$value, meanlog = meanlog, sdlog = sdlog))
+    mutate(wl_time_days = rlnorm(pop_size, meanlog = meanlog, sdlog = sdlog))
   pop$wl_time_days[!pop$wl] <- NA
 
   return(pop)

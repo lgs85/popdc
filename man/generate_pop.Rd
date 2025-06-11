@@ -4,10 +4,12 @@
 \alias{generate_pop}
 \title{Simulate a baseline population}
 \usage{
-generate_pop(params)
+generate_pop(params, pop_size = NULL)
 }
 \arguments{
 \item{params}{a parameters object, read in from a yaml file using \code{read_yaml()}}
+
+\item{pop_size}{numeric - leave blank to use the value in the params file}
 }
 \value{
 a dataframe
