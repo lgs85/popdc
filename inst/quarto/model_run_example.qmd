@@ -23,11 +23,11 @@ dd <- generate_pop(params)
 
 ```{r}
 
-dd2 <- sim_period(dd,365,params)
+dd2 <- sim_period(dd,30,params)
 
 dd2 |>
-  group_by(day) |>
-  summarise(apps = sum(gp_app)) |>
-  ggplot(aes(x = day,y = apps))+
-  geom_line()
+  group_by(day, age) |>
+  summarise(att = sum(ae_att)) |>
+  ggplot(aes(x = day,y = att, fill = age))+
+  geom_col()
 ```
