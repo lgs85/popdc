@@ -5,9 +5,11 @@ editor: visual
 ---
 
 ```{r}
+rm(list=ls())
 library(yaml)
 library(tidyverse)
 params <- read_yaml('../params/params.yaml')
+devtools::load_all()
 
 ```
 Create a starting population
@@ -15,6 +17,17 @@ Create a starting population
 ```{r}
 
 dd <- generate_pop(params)
-dd
 
+
+```
+
+```{r}
+
+dd2 <- sim_period(dd,365,params)
+
+dd2 |>
+  group_by(day) |>
+  summarise(apps = sum(gp_app)) |>
+  ggplot(aes(x = day,y = apps))+
+  geom_line()
 ```

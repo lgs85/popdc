@@ -4,7 +4,7 @@
 \alias{sample_segment_age}
 \title{Title sample a vector of segments using age groups}
 \usage{
-sample_segment_age(age, params)
+sample_segment_age(age, params, n)
 }
 \arguments{
 \item{params}{parameters object}

@@ -1,6 +1,6 @@
 pop_size:
   description: 'the size of your population'
-  value: 1000
+  value: 820000
   required: true
 
 age_group_probs:
@@ -63,3 +63,36 @@ elective_wait_times:
     median: 100
     q90: 290
   required: true
+
+gp_appointments_per_year:
+  description: 'yearly average number of GP appointments by age and segment'
+  value:
+    child:
+      Healthy: 1.9
+      AcuteEpisodic: 5.2
+      LongTermConditions: 3.4
+      HighNeed: 7.5
+      EndOfLife: 9.8
+    adult:
+      Healthy: 2.4
+      AcuteEpisodic: 5.6
+      LongTermConditions: 7.8
+      HighNeed: 17.2
+      EndOfLife: 16.2
+    elderly:
+      Healthy: 5.5
+      AcuteEpisodic: 10.1
+      LongTermConditions: 11.5
+      HighNeed: 17
+      EndOfLife: 18.7
+
+gp_appointments_daily_weight:
+  description: 'proportion of GP appointments per day'
+  value:
+    monday: 0.215
+    tuesday: 0.208
+    wednesday: 0.13
+    thursday: 0.190
+    friday: 0.181
+    saturday: 0.012
+    sunday: 0.001
