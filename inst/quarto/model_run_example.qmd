@@ -5,6 +5,7 @@ editor: visual
 ---
 
 ```{r}
+rm(list=ls())
 library(yaml)
 library(tidyverse)
 params <- read_yaml('../params/params.yaml')
@@ -22,7 +23,7 @@ dd <- generate_pop(params)
 
 ```{r}
 
-dd2 <- sim_period(dd,30,params)
+dd2 <- sim_period(dd,365,params)
 
 dd2 |>
   group_by(day) |>

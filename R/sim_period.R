@@ -26,6 +26,7 @@ sim_period <- function(pop,ndays,params)
     pop <- sim_day(pop,day = days[i],params) |>
       mutate(day = i)
     popl[[i]] <- pop
+    cat('.')
   }
 
   out <- popl |>

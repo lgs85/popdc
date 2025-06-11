@@ -25,13 +25,13 @@ generate_pop <- function(params)
   pop$segment[pop$age == 'elderly'] <- sample_segment_age('elderly', params, sum(pop$age == 'elderly'))
 
   df_wl_prob <- as_tibble(params$on_waiting_list_prob$value) |>
-    unnest() |>
+    unnest(cols = c(child, adult, elderly)) |>
     mutate(segment = names(params$on_waiting_list_prob$value[['child']])) |>
     pivot_longer(child:elderly,
                  names_to = 'age',
                  values_to = 'wl_prob')
 
-  pop <- pop |> left_join(df_wl_prob) |>
+  pop <- pop |> left_join(df_wl_prob,by = join_by(age, segment)) |>
     mutate(wl = rbinom(n(), 1, wl_prob))
 
 # Waiting times using lognormal distribution
