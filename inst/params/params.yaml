@@ -3,11 +3,14 @@ pop_size:
   value: 820000
   required: true
 
-demographic_growth:
-  description: 'mean and standard deviation daily dempgraphic growth (number of patients)'
+growth:
+  description: 'mean and standard deviation daily growth (number of patients) by segment'
   value:
-    mean: 11
-    sd: 3
+      Healthy: -11
+      AcuteEpisodic: 0
+      LongTermConditions: 19
+      HighNeed: 3
+      EndOfLife: 0
   required: false
 
 age_group_probs:

@@ -15,13 +15,20 @@ sim_day <- function (pop,day,params)
 {
 
 
-# demographic growth ------------------------------------------------------
+# growth ------------------------------------------------------
 
-newpopsize <- round((rnorm(1,params$demographic_growth$value$mean,params$demographic_growth$value$sd)))
-newpop <- generate_pop(params,pop_size = newpopsize)
-newpop$id <- c((max(pop$id)+1):(max(pop$id)+newpopsize))
-
-pop <- bind_rows(pop,newpop)
+# pop_changes <- as_tibble(params$growth$value) |>
+#     pivot_longer(everything())
+#
+# sum(pop_changes$value)
+# count(pop,segment)$n + pop_changes$value
+#
+#
+# newpopsize <- round((rnorm(1,params$demographic_growth$value$mean,params$demographic_growth$value$sd)))
+# newpop <- generate_pop(params,pop_size = newpopsize)
+# newpop$id <- c((max(pop$id)+1):(max(pop$id)+newpopsize))
+#
+# pop <- bind_rows(pop,newpop)
 
 
 # GP attendance -----------------------------------------------------------
