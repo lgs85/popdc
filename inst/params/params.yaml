@@ -96,3 +96,25 @@ gp_appointments_daily_weight:
     friday: 0.181
     saturday: 0.012
     sunday: 0.001
+
+ae_appointments_per_year:
+  description: 'yearly average number A&E attendances by age and segment'
+  value:
+    child:
+      Healthy: 0.4
+      AcuteEpisodic: 2.6
+      LongTermConditions: 0.7
+      HighNeed: 1.3
+      EndOfLife: 1.0
+    adult:
+      Healthy: 0.2
+      AcuteEpisodic: 2.0
+      LongTermConditions: 0.4
+      HighNeed: 1.1
+      EndOfLife: 1.0
+    elderly:
+      Healthy: 0.1
+      AcuteEpisodic: 2.1
+      LongTermConditions: 0.4
+      HighNeed: 1.0
+      EndOfLife: 1.0

@@ -15,6 +15,9 @@ sim_day <- function (pop,day,params)
 {
 
 
+# GP attendance -----------------------------------------------------------
+
+
   day_prob <- as.numeric(params$gp_appointments_daily_weight$value[day])
 
 
@@ -25,12 +28,28 @@ sim_day <- function (pop,day,params)
     mutate(appointment_prob = (appointments/52)*day_prob) |>
     select(-appointments)
 
-  out <- pop |>
+  pop <- pop |>
     left_join(df_gp_app,by = join_by(age, segment)) |>
     mutate(gp_app = rbinom(params$pop_size$value, 1, appointment_prob)) |>
     select(-appointment_prob)
 
-  return(out)
+
+# A&E attendance ----------------------------------------------------------
+
+  df_ae_att <- as_tibble(params$ae_appointments_per_year$value) |> unnest(cols = c(child, adult, elderly))
+  df_ae_att$segment <- names(params$ae_appointments_per_year$value$child)
+  df_ae_att <- df_ae_att |>
+    pivot_longer(child:elderly, names_to = 'age',values_to = 'attendances') |>
+    mutate(attendance_prob = (attendances/365)) |>
+    select(-attendances)
+
+  pop <- pop |>
+    left_join(df_ae_att,by = join_by(age, segment)) |>
+    mutate(ae_att = rbinom(params$pop_size$value, 1, attendance_prob)) |>
+    select(-attendance_prob)
+
+
+  return(pop)
 }
 
 
